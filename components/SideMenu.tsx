@@ -1,6 +1,8 @@
 "use client";
 
 import * as React from "react";
+import { useState, useEffect } from "react";
+import { getUser } from "@/lib/auth";
 import {
   BarChartHorizontal,
   Frame,
@@ -24,13 +26,25 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 
-const data = {
-  user: {
-    name: "Martin",
-    email: "martin@prossfora.com",
-    avatar: "/avatar/logo.png",
-  },
+const DEFAULT_USER = {
+  name: "User",
+  email: "",
+  avatar: "/avatar/logo.png",
+};
 
+function useSidebarUser() {
+  const [user, setUser] = useState(DEFAULT_USER);
+  useEffect(() => {
+    const u = getUser();
+    if (u && (u.email || u.first_name || u.last_name)) {
+      const name = [u.first_name, u.last_name].filter(Boolean).join(" ") || u.email || "User";
+      setUser({ name, email: u.email || "", avatar: "/avatar/logo.png" });
+    }
+  }, []);
+  return user;
+}
+
+const data = {
   //section titles
   navMain: [
     {
@@ -149,6 +163,7 @@ const data = {
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const sidebarUser = useSidebarUser();
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -156,10 +171,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={sidebarUser} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

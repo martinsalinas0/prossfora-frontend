@@ -54,7 +54,7 @@ const AddJobForm = () => {
         setIsLoadingDropdowns(true);
 
         const [customerRes, contractorRes, employeeRes] = await Promise.all([
-          api.get("customers/getAllCustomers"),
+          api.get("customers/all"),
           api.get("contractors/getAllContractors"),
           api.get("users/role/employee"),
         ]);

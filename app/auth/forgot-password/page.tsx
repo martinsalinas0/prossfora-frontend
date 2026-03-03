@@ -45,7 +45,7 @@ export default function ForgotPasswordPage() {
           </p>
         </div>
         <Link
-          href="/authentication/sign-in"
+          href="/auth/sign-in"
           className="inline-block w-full text-center px-4 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
         >
           Back to Sign In
@@ -97,7 +97,7 @@ export default function ForgotPasswordPage() {
         <FooterLink
           text="Remember your password?"
           linkText="Sign In"
-          href="/authentication/sign-in"
+          href="/auth/sign-in"
         />
       </div>
     </div>

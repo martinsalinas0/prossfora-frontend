@@ -2,7 +2,12 @@
 
 import FooterLink from "@/components/layouts/FooterLink";
 import { clientConfig } from "@/lib/config";
-import { setAccessToken, setRefreshToken, setUser } from "@/lib/auth";
+import {
+  setAccessToken,
+  setRefreshToken,
+  setUser,
+  setContractorId,
+} from "@/lib/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
@@ -10,7 +15,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function SignInPage() {
+export default function ContractorSignInPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
@@ -33,27 +38,34 @@ export default function SignInPage() {
     }
     setIsLoading(true);
     try {
-      const res = await axios.post(`${clientConfig.apiUrl}/auth/login/user`, {
-        email: email.trim(),
-        password,
-      });
+      const res = await axios.post(
+        `${clientConfig.apiUrl}/auth/login/contractor`,
+        {
+          email: email.trim(),
+          password,
+        }
+      );
       const token =
-        res.data?.data?.accessToken ?? res.data?.accessToken ?? res.data?.data?.token ?? res.data?.token;
+        res.data?.data?.accessToken ??
+        res.data?.accessToken ??
+        res.data?.data?.token ??
+        res.data?.token;
       if (token) {
         setAccessToken(token);
         const refresh =
           res.data?.data?.refreshToken ?? res.data?.refreshToken;
         if (refresh) setRefreshToken(refresh);
-        const user = res.data?.data?.user;
-        if (user && (user.first_name || user.last_name || user.email)) {
+        const contractor = res.data?.data?.contractor;
+        if (contractor) {
           setUser({
-            first_name: user.first_name,
-            last_name: user.last_name,
-            email: user.email,
+            first_name: contractor.first_name,
+            last_name: contractor.last_name,
+            email: contractor.email,
           });
+          setContractorId(contractor.id);
         }
       }
-      router.push("/admin");
+      router.push("/contractor");
     } catch (err) {
       if (axios.isAxiosError(err) && err.response?.status === 401) {
         setError("Invalid email or password.");
@@ -69,9 +81,11 @@ export default function SignInPage() {
     <div className="w-full max-w-md">
       <div className="mb-8">
         <h1 className="text-2xl sm:text-3xl font-bold text-cerulean">
-          Welcome Back
+          Contractor Sign In
         </h1>
-        <p className="text-pacific mt-2">Sign in to continue to Prossfora</p>
+        <p className="text-pacific mt-2">
+          Sign in to view your jobs and invoices
+        </p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-5">
@@ -123,16 +137,11 @@ export default function SignInPage() {
         </Button>
       </form>
 
-      <div className="mt-6 space-y-3">
+      <div className="mt-6">
         <FooterLink
-          text="Contractor?"
+          text="Admin or staff?"
           linkText="Sign in here"
-          href="/auth/sign-in/contractor"
-        />
-        <FooterLink
-          text="Don't have an account?"
-          linkText="Create an Account"
-          href="/auth/sign-up"
+          href="/auth/sign-in"
         />
       </div>
     </div>

@@ -64,7 +64,7 @@ const AdminDashboardPage = () => {
           invoicesRes,
           allJobsRes,
         ] = await Promise.all([
-          api.get("customers/getAllCustomers").catch(() => ({ data: { data: [] } })),
+          api.get("customers/all").catch(() => ({ data: { data: [] } })),
           api.get("jobs/status/open").catch(() => ({ data: { data: [] } })),
           api.get("payments/successful").catch(() => ({ data: { data: [] } })),
           api.get("contractors/getAllContractors").catch(() => ({ data: { data: [] } })),

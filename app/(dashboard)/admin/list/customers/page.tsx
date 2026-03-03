@@ -15,7 +15,7 @@ const CustomersListPage = () => {
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        const response = await api.get("customers/getAllCustomers");
+        const response = await api.get("customers/all");
         setCustomers(response.data.data ?? []);
       } catch (error) {
         console.error(error);

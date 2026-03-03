@@ -85,7 +85,7 @@ const SignUpPage = () => {
         const data = await res.json().catch(() => ({}));
         throw new Error(data?.message || "Sign up failed");
       }
-      router.push("/authentication/sign-in");
+      router.push("/auth/sign-in");
     } catch (error) {
       console.error("Signup error:", error);
       setErrors({ submit: "Signup failed. Please try again." });

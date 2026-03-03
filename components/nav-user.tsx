@@ -8,6 +8,9 @@ import {
   LogOut,
   Sparkles,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { clearAuth, getRefreshToken } from "@/lib/auth";
+import api from "@/lib/api";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -32,10 +35,23 @@ export function NavUser({
   user: {
     name: string;
     email: string;
-    avatar: string;
+    avatar?: string;
   };
 }) {
   const { isMobile } = useSidebar();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    try {
+      const refreshToken = getRefreshToken();
+      await api.post("auth/logout", refreshToken ? { refreshToken } : {});
+    } catch {
+      // Ignore errors (e.g. invalid token)
+    } finally {
+      clearAuth();
+      router.push("/auth/sign-in");
+    }
+  };
 
   return (
     <SidebarMenu>
@@ -110,7 +126,10 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator className="bg-[#c5cfe0]" />
-            <DropdownMenuItem className="hover:bg-red-50 text-red-600">
+            <DropdownMenuItem
+              className="hover:bg-red-50 text-red-600"
+              onClick={handleLogout}
+            >
               <LogOut className="text-red-500" />
               Log out
             </DropdownMenuItem>

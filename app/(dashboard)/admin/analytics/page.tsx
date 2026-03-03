@@ -27,7 +27,7 @@ export default function AnalyticsPage() {
           api.get("users/getAllUsers").catch(() => ({ data: { data: [] } })),
           api.get("jobs/status/open").catch(() => ({ data: { data: [] } })),
           api.get("payments/successful").catch(() => ({ data: { data: [] } })),
-          api.get("customers/getAllCustomers").catch(() => ({ data: { data: [] } })),
+          api.get("customers/all").catch(() => ({ data: { data: [] } })),
         ]);
         const payments = (p.data?.data ?? []) as { amount?: number }[];
         const revenue = payments.reduce((sum, x) => sum + Number(x.amount ?? 0), 0);

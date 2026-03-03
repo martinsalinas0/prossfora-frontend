@@ -33,7 +33,7 @@ export default function ContractorDashboardPage() {
           </CardHeader>
           <CardContent>
             <Link
-              href="/admin/list/jobs"
+              href="/contractor/jobs"
               className="text-cerulean font-medium hover:underline"
             >
               View jobs →
@@ -52,7 +52,7 @@ export default function ContractorDashboardPage() {
           </CardHeader>
           <CardContent>
             <Link
-              href="/admin/list/financials/invoices/contractors"
+              href="/contractor/invoices"
               className="text-cerulean font-medium hover:underline"
             >
               View invoices →
@@ -71,10 +71,10 @@ export default function ContractorDashboardPage() {
           </CardHeader>
           <CardContent>
             <Link
-              href="/admin/list/financials/payments"
+              href="/contractor/invoices"
               className="text-cerulean font-medium hover:underline"
             >
-              View payments →
+              View invoices →
             </Link>
           </CardContent>
         </Card>

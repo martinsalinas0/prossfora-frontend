@@ -128,7 +128,7 @@ const EditJobPage = () => {
       try {
         const [jobRes, customersRes, contractorsRes] = await Promise.all([
           api.get(`jobs/${jobId}`),
-          api.get("customers/getAllCustomers"),
+          api.get("customers/all"),
           api.get("contractors/getAllContractors"),
         ]);
 

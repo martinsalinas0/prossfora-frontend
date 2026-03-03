@@ -13,6 +13,7 @@ import { usePathname } from "next/navigation";
 
 const segmentLabels: Record<string, string> = {
   admin: "Admin",
+  contractor: "Contractor",
   list: "List",
   users: "Users",
   user: "User",
@@ -48,16 +49,20 @@ export function DashboardBreadcrumb() {
 
   if (segments.length === 0) return null;
 
+  const isContractor = segments[0] === "contractor";
+  const baseHref = isContractor ? "/contractor" : "/admin";
+  const baseLabel = isContractor ? "Contractor" : "Admin";
+
   return (
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem className="hidden md:block">
           <BreadcrumbLink asChild>
             <Link
-              href="/admin"
+              href={baseHref}
               className="text-muted-foreground hover:text-primary"
             >
-              Admin
+              {baseLabel}
             </Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
@@ -65,7 +70,7 @@ export function DashboardBreadcrumb() {
           const href = "/" + segments.slice(0, i + 1).join("/");
           const isLast = i === segments.length - 1;
           const label =
-            isLast && segment === "admin"
+            isLast && (segment === "admin" || segment === "contractor")
               ? "Dashboard"
               : formatSegment(segment);
           return (

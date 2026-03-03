@@ -8,13 +8,19 @@ export default function HomePage() {
           <span className="text-xl font-bold text-cerulean">Prossfora</span>
           <nav className="flex items-center gap-4">
             <Link
-              href="/authentication/sign-in"
+              href="/auth/sign-in/contractor"
+              className="text-pacific hover:text-cerulean font-medium transition-colors"
+            >
+              Contractor Sign In
+            </Link>
+            <Link
+              href="/auth/sign-in"
               className="text-pacific hover:text-cerulean font-medium transition-colors"
             >
               Sign In
             </Link>
             <Link
-              href="/authentication/sign-up"
+              href="/auth/sign-up"
               className="px-4 py-2 rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
             >
               Sign Up
@@ -38,7 +44,7 @@ export default function HomePage() {
             Go to Dashboard
           </Link>
           <Link
-            href="/authentication/sign-in"
+            href="/auth/sign-in"
             className="px-8 py-3 rounded-lg border-2 border-primary text-primary font-semibold hover:bg-muted transition-colors"
           >
             Sign In
