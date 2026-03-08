@@ -8,7 +8,15 @@ import api from "@/lib/api";
 import type { Contractor } from "@/lib/types/contractor";
 import type { Customer } from "@/lib/types/customers";
 import type { User } from "@/lib/types/user";
-import { ChevronDown, ChevronLeft, ChevronRight, Filter, Info, PlusCircle, UserPlus } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  Filter,
+  Info,
+  PlusCircle,
+  UserPlus,
+} from "lucide-react";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
@@ -255,7 +263,9 @@ const UsersListPage = () => {
                       setPage(1);
                     }}
                   >
-                    {r === "all" ? "All" : r.charAt(0).toUpperCase() + r.slice(1)}
+                    {r === "all"
+                      ? "All"
+                      : r.charAt(0).toUpperCase() + r.slice(1)}
                   </DropdownMenuItem>
                 ),
               )}
