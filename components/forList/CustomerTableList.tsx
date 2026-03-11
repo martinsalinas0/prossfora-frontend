@@ -9,7 +9,7 @@ interface CustomerTableListProps {
 }
 
 const CustomerTableList: React.FC<CustomerTableListProps> = ({ data }) => {
-  const columns = ["Name", "Email", "Phone", "Id", "status"];
+  const columns = ["Name", "Email", "Phone", "Address", "Status"];
 
   return (
     <div className="overflow-x-auto text-center">
@@ -43,7 +43,8 @@ const CustomerTableList: React.FC<CustomerTableListProps> = ({ data }) => {
                   {c.phone}
                 </td>
                 <td className="border-b border-border px-6 py-4 text-sm text-foreground ">
-                  {c.id}
+                  {c.address}, {}
+                  {c.city}
                 </td>
                 <td className="border-b border-border px-6 py-4 text-sm text-foreground ">
                   {c.is_active ? "ACTIVE" : "INACTIVE"}
