@@ -99,7 +99,7 @@ export default function ContractorJobsPage() {
           </div>
         </div>
       </div>
-      <JobTable data={filteredJobs} />
+      <JobTable data={filteredJobs} jobBasePath="/contractor/jobs" />
     </div>
   );
 }

@@ -8,9 +8,14 @@ import { JobWithRelations } from "@/lib/types/jobsWithJoins";
 
 interface JobTableProps {
   data: JobWithRelations[];
+  /** Base path for job detail links, e.g. "/admin/jobs" or "/contractor/jobs" */
+  jobBasePath?: string;
 }
 
-const JobTable: React.FC<JobTableProps> = ({ data }) => {
+const JobTable: React.FC<JobTableProps> = ({
+  data,
+  jobBasePath = "/admin/jobs",
+}) => {
   const columns = ["Title", "Status", "Customer", "City", "ID", "Contractor"];
 
   return (
@@ -22,7 +27,7 @@ const JobTable: React.FC<JobTableProps> = ({ data }) => {
           {data.map((job) => (
             <tr key={job.id} className="transition hover:bg-muted/50">
               <td className="border-b border-border px-6 py-4 text-sm text-foreground hover:text-primary">
-                <Link href={`/admin/jobs/${job.id}`}>{job.title}</Link>
+                <Link href={`${jobBasePath}/${job.id}`}>{job.title}</Link>
               </td>
 
               <td className="border-b border-border px-6 py-4 text-sm uppercase tracking-wide text-muted-foreground">
@@ -45,7 +50,7 @@ const JobTable: React.FC<JobTableProps> = ({ data }) => {
 
               <td className="border-b border-border px-6 py-4 text-sm font-medium text-foreground">
                 <Link
-                  href={`/admin/jobs/${job.id}`}
+                  href={`${jobBasePath}/${job.id}`}
                   className="hover:underline"
                 >
                   {job.id.slice(-6)}
