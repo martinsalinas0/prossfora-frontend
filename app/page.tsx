@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-cerulean-50 via-white to-olive-50 flex flex-col">
+    <div className="min-h-screen bg-linear-to-br from-cerulean-50 via-white to-olive-50 flex flex-col">
       <header className="border-b border-border bg-card/80 backdrop-blur">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <span className="text-xl font-bold text-cerulean">Prossfora</span>
@@ -34,7 +34,8 @@ export default function HomePage() {
           Manage jobs, contractors, and payments in one place
         </h1>
         <p className="text-lg text-pacific-600 max-w-xl mb-10">
-          Prossfora streamlines your operations—from task requests and scheduling to invoices and analytics.
+          Prossfora streamlines your operations—from task requests and
+          scheduling to invoices and analytics.
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
           <Link
