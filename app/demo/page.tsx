@@ -1,12 +1,5 @@
 import Link from "next/link";
-import {
-  ArrowRight,
-  Briefcase,
-  Calendar,
-  CheckCircle2,
-  Landmark,
-  Users,
-} from "lucide-react";
+import { ArrowRight, Briefcase, Calendar, Landmark, Users } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -49,12 +42,11 @@ export default function DemoHomePage() {
         </p>
         <h1 className="text-3xl font-bold tracking-tight text-cerulean sm:text-4xl lg:text-5xl">
           Operations for contractors,{" "}
-          <span className="text-pacific-600">without the spreadsheet fluff.</span>
+          <span className="text-pacific-600">
+            without the spreadsheet fluff.
+          </span>
         </h1>
-        <p className="mx-auto mt-4 max-w-2xl text-lg text-pacific-700 sm:mx-0">
-          Walk through sample screens for jobs, people, and money. Nothing here saves or
-          calls an API—it&apos;s so you can show the product at a glance.
-        </p>
+
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:justify-start">
           <Link
             href="/demo/jobs"
@@ -70,7 +62,6 @@ export default function DemoHomePage() {
             See financials
           </Link>
         </div>
-
       </section>
 
       <section>
